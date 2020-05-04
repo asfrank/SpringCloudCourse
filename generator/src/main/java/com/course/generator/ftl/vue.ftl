@@ -86,7 +86,7 @@
     components: {
       pagination: Pagination
     },
-    name: "${domain}",
+    name: "${module}-${domain}",
     data: function() {
       return {
         ${domain}: {},
