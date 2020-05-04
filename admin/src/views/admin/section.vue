@@ -33,14 +33,14 @@
 
       <tbody>
       <tr v-for="section in sections">
-            <th>{{section.id}}</th>
-            <th>{{section.title}}</th>
-            <th>{{section.courseId}}</th>
-            <th>{{section.chapterId}}</th>
-            <th>{{section.video}}</th>
-            <th>{{section.time}}</th>
-            <th>{{section.charge}}</th>
-            <th>{{section.sort}}</th>
+          <td>{{section.id}}</td>
+          <td>{{section.title}}</td>
+          <td>{{section.courseId}}</td>
+          <td>{{section.chapterId}}</td>
+          <td>{{section.video}}</td>
+          <td>{{section.time}}</td>
+          <td>{{CHARGE | optionKV(section.charge)}}</td>
+          <td>{{section.sort}}</td>
         <td>
           <div class="hidden-sm hidden-xs btn-group">
             <button v-on:click="edit(section)" class="btn btn-xs btn-info">
@@ -97,7 +97,9 @@
                   <div class="form-group">
                       <label class="col-sm-2 control-label">收费</label>
                       <div class="col-sm-10">
-                          <input v-model="section.charge" type="text" class="form-control">
+                        <select v-model="section.charge" class="form-control">
+                          <option v-for="o in CHARGE" v-bind:value="o.key">{{o.value}}</option>
+                        </select>
                       </div>
                   </div>
                   <div class="form-group">
@@ -128,7 +130,8 @@
     data: function() {
       return {
         section: {},
-        sections: []
+        sections: [],
+        CHARGE: [{key:"C", value:"收费"}, {key:"F", value:"免费"}],
       }
     },
     mounted: function() {
