@@ -39,7 +39,7 @@
           <td>{{section.chapterId}}</td>
           <td>{{section.video}}</td>
           <td>{{section.time}}</td>
-          <td>{{CHARGE | optionKV(section.charge)}}</td>
+          <td>{{SECTION_CHARGE | optionKV(section.charge)}}</td>
           <td>{{section.sort}}</td>
         <td>
           <div class="hidden-sm hidden-xs btn-group">
@@ -131,7 +131,7 @@
       return {
         section: {},
         sections: [],
-        CHARGE: CHARGE,
+        SECTION_CHARGE: SECTION_CHARGE,
       }
     },
     mounted: function() {
