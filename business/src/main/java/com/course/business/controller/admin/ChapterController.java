@@ -2,6 +2,7 @@ package com.course.business.controller.admin;
 
 import com.course.server.domain.Chapter;
 import com.course.server.dto.ChapterDto;
+import com.course.server.dto.ChapterPageDto;
 import com.course.server.dto.PageDto;
 import com.course.server.dto.ResponseDto;
 import com.course.server.exception.ValidatorException;
@@ -29,11 +30,12 @@ public class ChapterController {
      * 列表查询
      */
     @PostMapping("/list")
-    public ResponseDto list(@RequestBody PageDto pageDto) {
-//        LOG.info("pageDto: {}", pageDto);
+    public ResponseDto list(@RequestBody ChapterPageDto chapterPageDto) {
+//        LOG.info("chapterPageDto: {}", chapterPageDto);
         ResponseDto responseDto = new ResponseDto();
-        chapterService.list(pageDto);
-        responseDto.setContent(pageDto);
+        ValidatorUtil.require(chapterPageDto.getCourseId(), "课程ID");
+        chapterService.list(chapterPageDto);
+        responseDto.setContent(chapterPageDto);
         return responseDto;
     }
 
